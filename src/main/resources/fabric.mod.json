@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "letsricsusefulmod",
+  "version": "${version}",
+  "name": "LetsricsUsefulMod",
+  "description": "Eine nützliche Mod.",
+  "authors": [
+    "Letsric"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/LetsricsUsefulMod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "letsric.letsricsusefulmod.client.LetsricsUsefulModClient"
+    ],
+    "main": [
+      "letsric.letsricsusefulmod.LetsricsUsefulMod"
+    ]
+  },
+  "mixins": [
+    "LetsricsUsefulMod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.2"
+  }
+}
