@@ -12,6 +12,7 @@ public class ChatScreenMixin{
     @Redirect(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ChatScreen;sendMessage(Ljava/lang/String;)V"))
     private void injectedChatScreen(ChatScreen instance, String message) {
         if(message.startsWith(",ufm")) {
+            MinecraftClient.getInstance().inGameHud.getChatHud().addToMessageHistory(message);
             switch (message) {
                 case ",ufm gamma100":
                     MinecraftClient.getInstance().options.gamma = 100;
