@@ -1,5 +1,6 @@
 package letsric.letsricsusefulmod.mixin;
 
+import letsric.letsricsusefulmod.LetsricsUsefulMod;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.text.LiteralText;
@@ -24,7 +25,14 @@ public class ChatScreenMixin{
                     MinecraftClient.getInstance().player.sendMessage(new LiteralText("§aOptions.txt neu geladen!"), true);
                     break;
                 case ",ufm toggletab":
-                    MinecraftClient.getInstance().player.sendMessage(new LiteralText("§cDiese Funktion ist noch nicht fertig!"), true);
+                    if(LetsricsUsefulMod.TablistInToggleMode) {
+                        LetsricsUsefulMod.TablistInToggleMode = false;
+                        MinecraftClient.getInstance().player.sendMessage(new LiteralText("ToggleTab §cdeaktiviert§f!"), true);
+                    }
+                    else {
+                        LetsricsUsefulMod.TablistInToggleMode = true;
+                        MinecraftClient.getInstance().player.sendMessage(new LiteralText("ToggleTab §aaktiviert§f!"), true);
+                    }
                     break;
                 default:
                     MinecraftClient.getInstance().player.sendMessage(new LiteralText("§a-------------------------------------"), false);
