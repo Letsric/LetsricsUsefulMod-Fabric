@@ -3,15 +3,19 @@ package letsric.letsricsusefulmod.mixin;
 import letsric.letsricsusefulmod.LetsricsUsefulMod;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.LiteralText;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ChatScreen.class)
 public class ChatScreenMixin{
-    @Redirect(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/ChatScreen;sendMessage(Ljava/lang/String;)V"))
-    private void injectedChatScreen(ChatScreen instance, String message) {
+    @Inject(method = "keyPressed", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/widget/TextFieldWidget;getText()Ljava/lang/String;"))
+    private void injectedChatScreen(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> cir) {
+        TextFieldWidget ChatField = ((ChatScreenAccessor)this).getChatField();
+        String message = ChatField.getText().trim();
         if(message.startsWith(",ufm")) {
             MinecraftClient.getInstance().inGameHud.getChatHud().addToMessageHistory(message);
             switch (message) {
@@ -25,11 +29,10 @@ public class ChatScreenMixin{
                     MinecraftClient.getInstance().player.sendMessage(new LiteralText("§aOptions.txt neu geladen!"), true);
                     break;
                 case ",ufm toggletab":
-                    if(LetsricsUsefulMod.TablistInToggleMode) {
+                    if (LetsricsUsefulMod.TablistInToggleMode) {
                         LetsricsUsefulMod.TablistInToggleMode = false;
                         MinecraftClient.getInstance().player.sendMessage(new LiteralText("ToggleTab §cdeaktiviert§f!"), true);
-                    }
-                    else {
+                    } else {
                         LetsricsUsefulMod.TablistInToggleMode = true;
                         MinecraftClient.getInstance().player.sendMessage(new LiteralText("ToggleTab §aaktiviert§f!"), true);
                     }
@@ -43,8 +46,7 @@ public class ChatScreenMixin{
                     MinecraftClient.getInstance().player.sendMessage(new LiteralText("§a-------------------------------------"), false);
                     break;
             }
-        } else {
-            ((ChatScreen)(Object)this).sendMessage(message);
+            ChatField.setText("");
         }
     }
 }

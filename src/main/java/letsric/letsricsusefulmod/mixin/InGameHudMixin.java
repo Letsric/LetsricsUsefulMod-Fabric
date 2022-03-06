@@ -18,8 +18,7 @@ public class InGameHudMixin {
         if (LetsricsUsefulMod.TablistInToggleMode) {
             if (this.TablistToggled) MinecraftClient.getInstance().options.playerListKey.setPressed(true);
             if(MinecraftClient.getInstance().options.playerListKey.wasPressed()) {
-                if(this.TablistToggled) this.TablistToggled = false;
-                else this.TablistToggled = true;
+                this.TablistToggled = !this.TablistToggled;
             }
         }
     }
