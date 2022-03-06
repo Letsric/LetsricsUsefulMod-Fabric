@@ -28,4 +28,4 @@ im Chat abgesendet!**
 ### Befehlsliste:
 - ,ufm gamma100 - Gamma auf 100 setzen
 - ,ufm rloptionstxt - options.txt neu laden
-- ,ufm toggletab - ToggleTab aktivieren (**ZUR ZEIT NOCH NICHT FERTIG!**)
+- ,ufm toggletab - ToggleTab aktivieren / deaktivieren
