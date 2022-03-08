@@ -61,7 +61,7 @@ public class onChatEvent {
                         MinecraftClient.getInstance().player.sendMessage(new LiteralText("   <KEY> = Die Taste für den neuen Hotkey"), false);
                         MinecraftClient.getInstance().player.sendMessage(new LiteralText("   <MESSAGE> = Die Chatnachricht, die gesendet werden soll."), false);
                         MinecraftClient.getInstance().player.sendMessage(new LiteralText("   §eBEISPIEL§f: §b,ufm autotext add c;/gamemode creative"), false);
-                        MinecraftClient.getInstance().player.sendMessage(new LiteralText("§a,ufm autotect list§f:"), false);
+                        MinecraftClient.getInstance().player.sendMessage(new LiteralText("§a,ufm autotext list§f:"), false);
                         MinecraftClient.getInstance().player.sendMessage(new LiteralText("   Alle Autotexts auflisten"), false);
                         MinecraftClient.getInstance().player.sendMessage(new LiteralText("§a,ufm autotext remove <KEY>;<COMMAND>§f:"), false);
                         MinecraftClient.getInstance().player.sendMessage(new LiteralText("   Das selbe wie autotext add, nur das"), false);
