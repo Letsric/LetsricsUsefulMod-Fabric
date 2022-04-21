@@ -28,6 +28,7 @@ im Chat abgesendet!**
 ### Befehlsliste:
 ![Image](Help1.png)
 ![Image](Help2.png)
+![Image](Help3.png)
 
 ---
 

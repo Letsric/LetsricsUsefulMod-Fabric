@@ -1,5 +1,6 @@
 package letsric.letsricsusefulmod.mixin;
 
+import letsric.letsricsusefulmod.CommandHandler;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,6 +16,6 @@ public class ChatScreenMixin{
         ChatScreen thisObject = ((ChatScreen)(Object)this);
         TextFieldWidget ChatField = ((ChatScreenAccessor)thisObject).getChatField();
         String message = ChatField.getText().trim();
-        letsric.letsricsusefulmod.onChatEvent.onChatEvent(thisObject, ChatField, message);
+        CommandHandler.onChatEvent(thisObject, ChatField, message);
     }
 }

@@ -1,8 +1,6 @@
 package letsric.letsricsusefulmod;
 
-import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ModInitializer;
-import org.slf4j.Logger;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -38,14 +36,25 @@ public class LetsricsUsefulMod implements ModInitializer {
         for (int i = 0 ; i < optionsFileData.size() ; i++) {
             optionsFileData2.add(optionsFileData.get(i).split(": "));
         }
-        TablistInToggleMode = Boolean.parseBoolean(optionsFileData2.get(0)[1]);
-        int autoTextArraySize = Integer.parseInt(optionsFileData2.get(1)[1]);
+        int nextline = 0;
+        TablistInToggleMode = Boolean.parseBoolean(optionsFileData2.get(nextline)[1]);
+        nextline++;
+        int autoTextArraySize = Integer.parseInt(optionsFileData2.get(nextline)[1]);
+        nextline++;
         for (int i = 0 ; i < autoTextArraySize ; i++) {
-            String i2 = optionsFileData2.get(i + 2)[1];
+            String i2 = optionsFileData2.get(nextline)[1];
             if (AutoText.addAutoTextKeybind(i2) == 0) {
                 autoTextArray.add(i2);
             }
+            nextline++;
         }
+        int chatsoundfiltersize = Integer.parseInt(optionsFileData2.get(nextline)[1]);
+        nextline++;
+        for (int i = 0 ; i < chatsoundfiltersize ; i++) {
+            ChatSound.addFilter(optionsFileData2.get(nextline)[1]);
+            nextline++;
+        }
+
     }
     public static void WriteUFMOptionsFile() {
         File optionsFile = new File("UsefulModOptions.txt");
@@ -55,6 +64,9 @@ public class LetsricsUsefulMod implements ModInitializer {
             for (int i = 0 ; i < autoTextArray.size() ; i++) {
                 printWriter.println("autotext" + i + ": " + autoTextArray.get(i));
             }
+            int chatsoundfiltersize = ChatSound.Filters.size();
+            printWriter.println("chatsoundfiltersize: " + chatsoundfiltersize);
+            for (int i = 0 ; i < chatsoundfiltersize ; i++) printWriter.println("chatsoundfilter" + i + ": " + ChatSound.Filters.get(i));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
