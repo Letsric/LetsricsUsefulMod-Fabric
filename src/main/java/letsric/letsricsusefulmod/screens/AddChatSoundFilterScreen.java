@@ -1,6 +1,7 @@
 package letsric.letsricsusefulmod.screens;
 
 import letsric.letsricsusefulmod.ChatSound;
+import letsric.letsricsusefulmod.LetsricsUsefulMod;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -27,6 +28,7 @@ public class AddChatSoundFilterScreen extends Screen {
             String FilterText = FilterTextField.getText();
             if (!FilterText.isEmpty()) {
                 ChatSound.Filters.add(FilterText);
+                LetsricsUsefulMod.WriteUFMOptionsFile();
                 MinecraftClient.getInstance().setScreen(new ChatSoundFilterScreen());
             }
         }));
