@@ -57,7 +57,7 @@ public class LetsricsUsefulMod implements ModInitializer {
         int chatsoundfiltersize = Integer.parseInt(optionsFileData2.get(nextline)[1]);
         nextline++;
         for (int i = 0 ; i < chatsoundfiltersize ; i++) {
-            ChatSound.addFilter(optionsFileData2.get(nextline)[1]);
+            ChatSound.Filters.add(optionsFileData2.get(nextline)[1]);
             nextline++;
         }
 

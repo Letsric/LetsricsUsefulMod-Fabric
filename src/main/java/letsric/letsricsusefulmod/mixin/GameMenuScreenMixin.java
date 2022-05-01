@@ -3,6 +3,7 @@ package letsric.letsricsusefulmod.mixin;
 import letsric.letsricsusefulmod.LetsricsUsefulMod;
 import letsric.letsricsusefulmod.screens.AdvancedScreen;
 import letsric.letsricsusefulmod.screens.AutotextScreen;
+import letsric.letsricsusefulmod.screens.ChatSoundFilterScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -59,7 +60,7 @@ public class GameMenuScreenMixin extends Screen {
         }));
 
         this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 120 + -16, 98, 20, new LiteralText("ChatsoundFilter"), button -> {
-            //TODO
+            MinecraftClient.getInstance().setScreen(new ChatSoundFilterScreen());
         }));
 
         this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 144 + -16, 98, 20, new LiteralText("Advanced"), button -> {

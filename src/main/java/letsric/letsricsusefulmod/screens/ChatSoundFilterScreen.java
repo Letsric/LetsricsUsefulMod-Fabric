@@ -1,6 +1,7 @@
 package letsric.letsricsusefulmod.screens;
 
 import letsric.letsricsusefulmod.AutoText;
+import letsric.letsricsusefulmod.ChatSound;
 import letsric.letsricsusefulmod.LetsricsUsefulMod;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.GameMenuScreen;
@@ -9,26 +10,25 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 
-public class AutotextScreen extends Screen {
+public class ChatSoundFilterScreen extends Screen {
 
-    public AutotextScreen() {
-        super(new LiteralText("Autotext Konfiguration"));
+    public ChatSoundFilterScreen() {
+        super(new LiteralText("Chatsoundfilter Konfiguration"));
     }
 
     @Override
     public void init() {
-        for (int i = 0 ; i < AutoText.Autotexts.size() ; i++) {
+        for (int i = 0; i < ChatSound.Filters.size(); i++) {
             int i2 = i;
             addDrawableChild(new ButtonWidget(this.width / 2 + 200, i * 24 + 80, 98, 20, new LiteralText("Entfernen"), action -> {
-                AutoText.Autotexts.remove(i2);
-                LetsricsUsefulMod.autoTextArray.remove(i2);
+                ChatSound.Filters.remove(i2);
                 LetsricsUsefulMod.WriteUFMOptionsFile();
                 MinecraftClient.getInstance().setScreen(this);
             }));
         }
 
-        addDrawableChild(new ButtonWidget(this.width - 150, this.height - 50, 98, 20, new LiteralText("Neuer Autotext"), action -> {
-            MinecraftClient.getInstance().setScreen(new AddAutotextScreen());
+        addDrawableChild(new ButtonWidget(this.width - 150, this.height - 50, 98, 20, new LiteralText("Neuer Chatsoundfilter"), action -> {
+            MinecraftClient.getInstance().setScreen(new AddChatSoundFilterScreen());
         }));
     }
 
@@ -39,12 +39,11 @@ public class AutotextScreen extends Screen {
 
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
+        renderBackground(matrices);
         GameMenuScreen.drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 40, 0xFFFFFF);
-        for (int i = 0 ; i < AutoText.Autotexts.size() ; i++) {
-            drawTextWithShadow(matrices, this.textRenderer, new LiteralText(LetsricsUsefulMod.autoTextArray.get(i)[1]), this.width / 2 - 200, i * 24 + 80, 0xFFFFFF);
+        for (int i = 0; i < ChatSound.Filters.size() ; i++) {
+            drawTextWithShadow(matrices, this.textRenderer, new LiteralText(ChatSound.Filters.get(i)), this.width / 2 - 100, i * 24 + 80, 0xFFFFFF);
         }
         super.render(matrices, mouseX, mouseY, delta);
     }
 }
-
