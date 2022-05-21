@@ -17,7 +17,6 @@ public class AddAutotextScreen extends Screen {
 
     private boolean setKeyMode = false;
     private InputUtil.Key Key;
-    private TextFieldWidget nameField;
     private TextFieldWidget commandField;
 
     private Text getButtonText() {
@@ -32,28 +31,24 @@ public class AddAutotextScreen extends Screen {
 
     @Override
     public void init() {
-        nameField = new TextFieldWidget(textRenderer, this.width / 2 - 100, this.height / 2 + 5, 200, 20, new LiteralText(""));
-        commandField = new TextFieldWidget(textRenderer, this.width / 2 - 100, this.height / 2 + 29, 200, 20, new LiteralText(""));
+        commandField = new TextFieldWidget(textRenderer, this.width / 2 - 100, this.height / 2 -11, 200, 20, new LiteralText("Chat-Nachricht"));
         addDrawableChild(commandField);
-        addDrawableChild(nameField);
-        addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 53, 200, 20, getButtonText(), action -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 13, 200, 20, getButtonText(), action -> {
             this.setKeyMode = true;
-            reload(nameField.getText(), commandField.getText());
+            reload(commandField.getText());
         }));
-        addDrawableChild(new ButtonWidget(this.width / 2 -100, this.height / 2 + 77, 200, 20, new LiteralText("Fertig"), action -> {
-            String name = nameField.getText();
+        addDrawableChild(new ButtonWidget(this.width / 2 -100, this.height / 2 + 36, 200, 20, new LiteralText("Fertig"), action -> {
             String command = commandField.getText();
-            if (!command.isEmpty() && !name.isEmpty() && Key != null) {
-                AutoText.addAutoTextKeybind(Key, command, name);
+            if (!command.isEmpty() && Key != null) {
+                AutoText.addAutoTextKeybind(Key, command);
                 MinecraftClient.getInstance().setScreen(new AutotextScreen());
             }
             LetsricsUsefulMod.WriteUFMOptionsFile();
         }));
     }
 
-    private void reload(String name, String command) {
+    private void reload(String command) {
         MinecraftClient.getInstance().setScreen(this);
-        nameField.setText(name);
         commandField.setText(command);
     }
 
@@ -67,7 +62,7 @@ public class AddAutotextScreen extends Screen {
         if (this.setKeyMode) {
             this.Key = InputUtil.fromKeyCode(keyCode, scanCode);
             this.setKeyMode = false;
-            reload(nameField.getText(), commandField.getText());
+            reload(commandField.getText());
             return true;
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
@@ -76,7 +71,8 @@ public class AddAutotextScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
-        GameMenuScreen.drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, this.height / 2 - 15, 0xFFFFFF);
+        drawCenteredText(matrices, this.textRenderer, new LiteralText("§7Chat-Nachricht"), this.width / 2 - 62, this.height / 2 - 21, 0xFFFFFF);
+        drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, this.height / 2 - 35, 0xFFFFFF);
         super.render(matrices, mouseX, mouseY, delta);
     }
 }

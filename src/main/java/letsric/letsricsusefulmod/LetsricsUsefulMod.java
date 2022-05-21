@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class LetsricsUsefulMod implements ModInitializer {
     public static boolean TablistInToggleMode = false;
-    public static ArrayList<String[]> autoTextArray = new ArrayList<>();
+    public static ArrayList<String> autoTextArray = new ArrayList<>();
 
     @Override
     public void onInitialize() {
@@ -50,8 +50,7 @@ public class LetsricsUsefulMod implements ModInitializer {
             String i2[] = optionsFileData2.get(nextline)[1].split(";");
             InputUtil.Key Key = InputUtil.fromTranslationKey(i2[0]);
             String command = i2[1];
-            String name = i2[2];
-            AutoText.addAutoTextKeybind(Key, command, name);
+            AutoText.addAutoTextKeybind(Key, command);
             nextline++;
         }
         int chatsoundfiltersize = Integer.parseInt(optionsFileData2.get(nextline)[1]);
@@ -68,7 +67,7 @@ public class LetsricsUsefulMod implements ModInitializer {
             printWriter.println("TablistInToggleMode: " + TablistInToggleMode);
             printWriter.println("autotextsize: " + autoTextArray.size());
             for (int i = 0 ; i < autoTextArray.size() ; i++) {
-                printWriter.println("autotext" + i + ": " + autoTextArray.get(i)[0] + ";" + autoTextArray.get(i)[1]);
+                printWriter.println("autotext" + i + ": " + autoTextArray.get(i));
             }
             int chatsoundfiltersize = ChatSound.Filters.size();
             printWriter.println("chatsoundfiltersize: " + chatsoundfiltersize);

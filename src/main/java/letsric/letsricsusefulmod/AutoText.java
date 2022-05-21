@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class AutoText {
     public static ArrayList<KeyBinding> Autotexts = new ArrayList<>();
-    public static void addAutoTextKeybind(InputUtil.Key Key, String command, String name) {
+    public static void addAutoTextKeybind(InputUtil.Key Key, String command) {
         KeyBinding KeyBinding = new KeyBinding(Key.getTranslationKey(), Key.getCode(), "AutoText");
-        LetsricsUsefulMod.autoTextArray.add( new String[] {Key.getTranslationKey() + ";" + command, name} );
+        LetsricsUsefulMod.autoTextArray.add(Key.getTranslationKey() + ";" + command);
         Autotexts.add(KeyBinding);
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (KeyBinding.wasPressed() && Autotexts.contains(KeyBinding)) {

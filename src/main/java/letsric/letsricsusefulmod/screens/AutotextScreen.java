@@ -19,7 +19,7 @@ public class AutotextScreen extends Screen {
     public void init() {
         for (int i = 0 ; i < AutoText.Autotexts.size() ; i++) {
             int i2 = i;
-            addDrawableChild(new ButtonWidget(this.width / 2 + 200, i * 24 + 80, 98, 20, new LiteralText("Entfernen"), action -> {
+            addDrawableChild(new ButtonWidget(this.width / 2 + 100, i * 24 + 80, 98, 20, new LiteralText("Entfernen"), action -> {
                 AutoText.Autotexts.remove(i2);
                 LetsricsUsefulMod.autoTextArray.remove(i2);
                 LetsricsUsefulMod.WriteUFMOptionsFile();
@@ -27,7 +27,7 @@ public class AutotextScreen extends Screen {
             }));
         }
 
-        addDrawableChild(new ButtonWidget(this.width - 150, this.height - 50, 98, 20, new LiteralText("Neuer Autotext"), action -> {
+        addDrawableChild(new ButtonWidget(this.width - 100, 40, 25, 20, new LiteralText("+"), action -> {
             MinecraftClient.getInstance().setScreen(new AddAutotextScreen());
         }));
     }
@@ -40,11 +40,10 @@ public class AutotextScreen extends Screen {
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         this.renderBackground(matrices);
-        GameMenuScreen.drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 40, 0xFFFFFF);
+        drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 40, 0xFFFFFF);
         for (int i = 0 ; i < AutoText.Autotexts.size() ; i++) {
-            drawTextWithShadow(matrices, this.textRenderer, new LiteralText(LetsricsUsefulMod.autoTextArray.get(i)[1]), this.width / 2 - 200, i * 24 + 80, 0xFFFFFF);
+            drawTextWithShadow(matrices, this.textRenderer, new LiteralText(LetsricsUsefulMod.autoTextArray.get(i).split(";")[1]), this.width / 2 - 100, i * 24 + 85, 0xFFFFFF);
         }
         super.render(matrices, mouseX, mouseY, delta);
     }
 }
-

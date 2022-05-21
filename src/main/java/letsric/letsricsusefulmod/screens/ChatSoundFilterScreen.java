@@ -1,6 +1,5 @@
 package letsric.letsricsusefulmod.screens;
 
-import letsric.letsricsusefulmod.AutoText;
 import letsric.letsricsusefulmod.ChatSound;
 import letsric.letsricsusefulmod.LetsricsUsefulMod;
 import net.minecraft.client.MinecraftClient;
@@ -20,14 +19,14 @@ public class ChatSoundFilterScreen extends Screen {
     public void init() {
         for (int i = 0; i < ChatSound.Filters.size(); i++) {
             int i2 = i;
-            addDrawableChild(new ButtonWidget(this.width / 2 + 200, i * 24 + 80, 98, 20, new LiteralText("Entfernen"), action -> {
+            addDrawableChild(new ButtonWidget(this.width / 2 + 100, i * 24 + 80, 98, 20, new LiteralText("Entfernen"), action -> {
                 ChatSound.Filters.remove(i2);
                 LetsricsUsefulMod.WriteUFMOptionsFile();
                 MinecraftClient.getInstance().setScreen(this);
             }));
         }
 
-        addDrawableChild(new ButtonWidget(this.width - 150, this.height - 50, 98, 20, new LiteralText("Neuer Chatsoundfilter"), action -> {
+        addDrawableChild(new ButtonWidget(this.width - 100, 40, 25, 20, new LiteralText("+"), action -> {
             MinecraftClient.getInstance().setScreen(new AddChatSoundFilterScreen());
         }));
     }
@@ -42,7 +41,7 @@ public class ChatSoundFilterScreen extends Screen {
         renderBackground(matrices);
         GameMenuScreen.drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 40, 0xFFFFFF);
         for (int i = 0; i < ChatSound.Filters.size() ; i++) {
-            drawTextWithShadow(matrices, this.textRenderer, new LiteralText(ChatSound.Filters.get(i)), this.width / 2 - 100, i * 24 + 80, 0xFFFFFF);
+            drawTextWithShadow(matrices, this.textRenderer, new LiteralText(ChatSound.Filters.get(i)), this.width / 2 - 100, i * 24 + 85, 0xFFFFFF);
         }
         super.render(matrices, mouseX, mouseY, delta);
     }

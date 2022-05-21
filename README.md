@@ -14,10 +14,8 @@ Mein aktuelles Projekt. Eine GUI für UsefulMod.
 
 ### Was nicht geht:
 - Command basierte einstellungen und Steuerungen
-- Chatsoundfilter
 
 ### Was geplant ist:
-- Chatsoundfilter
 - Hilfe-Button, der alles erklärt
 
 ### **WICHTIG!**
