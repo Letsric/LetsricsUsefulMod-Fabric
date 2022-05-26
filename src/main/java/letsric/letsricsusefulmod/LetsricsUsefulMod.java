@@ -1,6 +1,7 @@
 package letsric.letsricsusefulmod;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.util.InputUtil;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +18,8 @@ public class LetsricsUsefulMod implements ModInitializer {
     }
 
     public static void LoadUFMOptionsFile() {
+
+        // OptionsFile Initialisation
         File optionsFile = new File("UsefulModOptions.txt");
         ArrayList<String> optionsFileData = new ArrayList<>();
         ArrayList<String[]> optionsFileData2 = new ArrayList<>();
@@ -36,22 +39,24 @@ public class LetsricsUsefulMod implements ModInitializer {
         for (int i = 0 ; i < optionsFileData.size() ; i++) {
             optionsFileData2.add(optionsFileData.get(i).split(": "));
         }
+
+        // Reading values
         int nextline = 0;
         TablistInToggleMode = Boolean.parseBoolean(optionsFileData2.get(nextline)[1]);
         nextline++;
         int autoTextArraySize = Integer.parseInt(optionsFileData2.get(nextline)[1]);
         nextline++;
         for (int i = 0 ; i < autoTextArraySize ; i++) {
-            String i2 = optionsFileData2.get(nextline)[1];
-            if (AutoText.addAutoTextKeybind(i2) == 0) {
-                autoTextArray.add(i2);
-            }
+            String i2[] = optionsFileData2.get(nextline)[1].split(";");
+            InputUtil.Key Key = InputUtil.fromTranslationKey(i2[0]);
+            String command = i2[1];
+            AutoText.addAutoTextKeybind(Key, command);
             nextline++;
         }
         int chatsoundfiltersize = Integer.parseInt(optionsFileData2.get(nextline)[1]);
         nextline++;
         for (int i = 0 ; i < chatsoundfiltersize ; i++) {
-            ChatSound.addFilter(optionsFileData2.get(nextline)[1]);
+            ChatSound.Filters.add(optionsFileData2.get(nextline)[1]);
             nextline++;
         }
 
