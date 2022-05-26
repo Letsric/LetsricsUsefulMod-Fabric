@@ -32,6 +32,13 @@ public class AdvancedScreen extends Screen {
             this.client.mouse.lockCursor();
         }));
 
+        this.addDrawableChild(new ButtonWidget(this.width / 2 - 102, 188, 204, 20, new LiteralText("Minecraft Options.txt neu laden"), button -> {
+            MinecraftClient.getInstance().options.load();
+            MinecraftClient.getInstance().player.sendMessage(new LiteralText("§aOptions.txt neu geladen!"), true);
+            this.client.setScreen(null);
+            this.client.mouse.lockCursor();
+        }));
+
     }
 
     @Override

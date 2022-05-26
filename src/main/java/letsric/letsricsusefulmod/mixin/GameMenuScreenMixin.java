@@ -4,6 +4,7 @@ import letsric.letsricsusefulmod.LetsricsUsefulMod;
 import letsric.letsricsusefulmod.screens.AdvancedScreen;
 import letsric.letsricsusefulmod.screens.AutotextScreen;
 import letsric.letsricsusefulmod.screens.ChatSoundFilterScreen;
+import letsric.letsricsusefulmod.screens.HelpScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -33,18 +34,11 @@ public class GameMenuScreenMixin extends Screen {
             this.client.mouse.lockCursor();
         }));
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 48 + -16, 98, 20, new LiteralText("Reload Options.txt"), button -> {
-            MinecraftClient.getInstance().options.load();
-            MinecraftClient.getInstance().player.sendMessage(new LiteralText("§aOptions.txt neu geladen!"), true);
-            this.client.setScreen(null);
-            this.client.mouse.lockCursor();
-        }));
-
         String TablistInToggleModeString = "§cFEHLER";
         if(LetsricsUsefulMod.TablistInToggleMode) TablistInToggleModeString = "§aAN";
         if(!LetsricsUsefulMod.TablistInToggleMode) TablistInToggleModeString = "§cAUS";
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 72 + -16, 98, 20, new LiteralText("ToggleTab: " + TablistInToggleModeString), button -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 48 + -16, 98, 20, new LiteralText("ToggleTab: " + TablistInToggleModeString), button -> {
             if (LetsricsUsefulMod.TablistInToggleMode) {
                 LetsricsUsefulMod.TablistInToggleMode = false;
                 LetsricsUsefulMod.WriteUFMOptionsFile();
@@ -55,16 +49,20 @@ public class GameMenuScreenMixin extends Screen {
             MinecraftClient.getInstance().setScreen(this);
         }));
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 96 + -16, 98, 20, new LiteralText("Autotext"), button -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 72 + -16, 98, 20, new LiteralText("Autotext"), button -> {
             MinecraftClient.getInstance().setScreen(new AutotextScreen());
         }));
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 120 + -16, 98, 20, new LiteralText("ChatsoundFilter"), button -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 96 + -16, 98, 20, new LiteralText("ChatsoundFilter"), button -> {
             MinecraftClient.getInstance().setScreen(new ChatSoundFilterScreen());
         }));
 
-        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 144 + -16, 98, 20, new LiteralText("Advanced"), button -> {
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 120 + -16, 98, 20, new LiteralText("Advanced"), button -> {
             MinecraftClient.getInstance().setScreen(new AdvancedScreen(this));
+        }));
+
+        this.addDrawableChild(new ButtonWidget(this.width / 2 + 107, this.height / 4 + 144 + - 16, 98, 20, new LiteralText("Hilfe"), action -> {
+            MinecraftClient.getInstance().setScreen(new HelpScreen());
         }));
 
     }
