@@ -1,24 +1,24 @@
-# GUI preview
+# Letsrics useful Mod (Fabric)
 
-Mein aktuelles Projekt. Eine GUI für UsefulMod.
+Diese Mod fügt ein paar nützliche Funktionen zum Spiel hinzu.
 
 ---
 
-### Was geht:
+### Installation:
+
+- Installiere [Fabric](https://fabricmc.net/use/installer/) für Minecraft 1.18.2
+- Lade dir die [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api/files/all) für Minecraft 1.18.2 herunter
+- Lade diese Mod unter [Releases](https://github.com/Letsric/LetsricsUsefulMod-Fabric/releases) herunter
+- Kopiere Fabric API und diese Mod in deinen .minecraft/mods Ordner
+- Starte den Minecraft Launcher, wähle "Fabric 1.18.2" aus, und klicke Spielen
+
+### Funktionen:
+
 - Gamma100
-- Options.txt neu laden
-- ToggleTab
 - Autotext
-- Automatisches Speichern und laden von Einstellungen
-- Alles per GUI
+- ChatsoundFilter
+- ToggleTab
 
-### Was nicht geht:
-- Command basierte einstellungen und Steuerungen
+### Video:
 
-### Was geplant ist:
-- Hilfe-Button, der alles erklärt
-
-### **WICHTIG!**
-Wenn ihr schonmal den UsefulMod verwendet habt, habt ihr wahrscheinlich schon eine UsefulModOptions.txt Datei
-in eurem Minecraft Ordner. Wenn ihr zu einer neuen Version wechselt, müsst ihr diese löschen, damit das neue Format
-verwendet werden kann und Minecraft nicht beim Starten abstürzt!
+TODO
