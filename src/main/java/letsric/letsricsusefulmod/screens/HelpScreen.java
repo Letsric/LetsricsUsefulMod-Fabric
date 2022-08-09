@@ -13,7 +13,7 @@ public class HelpScreen extends Screen {
 
     @Override
     public void close() {
-        MinecraftClient.getInstance().setScreen(new GameMenuScreen(true));
+        MinecraftClient.getInstance().setScreen(new UfmScreen());
     }
 
     @Override
