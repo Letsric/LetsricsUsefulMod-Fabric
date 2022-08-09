@@ -14,11 +14,13 @@ Diese Mod fügt ein paar nützliche Funktionen zum Spiel hinzu.
 
 ### Funktionen:
 
-- Gamma100
-- Autotext
-- ChatsoundFilter
-- ToggleTab
+* Autotext
+* ChatsoundFilter
+* FullBright
+* Koortinaten Kopieren
+* Quicksend
+* ToggleTab
 
 ### Video:
 
-[![Video](https://img.youtube.com/vi/vfVoN5ksk9I/0.jpg)](https://youtu.be/vfVoN5ksk9I)
+~[Video](https://youtu.be/vfVoN5ksk9I)~ **Outdated!** bald kommt ein neues!
