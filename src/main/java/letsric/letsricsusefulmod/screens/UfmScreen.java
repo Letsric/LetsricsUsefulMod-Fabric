@@ -1,12 +1,18 @@
 package letsric.letsricsusefulmod.screens;
 
 import letsric.letsricsusefulmod.LetsricsUsefulMod;
+import letsric.letsricsusefulmod.SendMessageToPlayer;
+import net.minecraft.client.Keyboard;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.util.Clipboard;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
+
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 
 public class UfmScreen extends Screen {
 
@@ -61,10 +67,6 @@ public class UfmScreen extends Screen {
             MinecraftClient.getInstance().setScreen(new AdvancedScreen(this));
         }));
 
-        addDrawableChild(new ButtonWidget(this.width / 2 + 50, 89, 90, 20, new LiteralText("Hilfe"), action -> {
-            MinecraftClient.getInstance().setScreen(new HelpScreen());
-        }));
-
         String ButtonText;
         if (LetsricsUsefulMod.showHud) ButtonText = "§aAN";
         else ButtonText = "§cAUS";
@@ -79,6 +81,16 @@ public class UfmScreen extends Screen {
         addDrawableChild(new ButtonWidget(this.width / 2 - 140, 113, 90, 20, new LiteralText("Quicksend"), button -> {
             MinecraftClient.getInstance().setScreen(new QuicksendScreen(new UfmScreen()));
         }));
+
+        // Copy Coords
+        addDrawableChild(new ButtonWidget(this.width / 2 + 50, 89, 90, 20, new LiteralText("Koortinaten Kopieren"), button -> {
+            String coords = MinecraftClient.getInstance().player.getBlockX() + ", " + MinecraftClient.getInstance().player.getBlockY() + ", " + MinecraftClient.getInstance().player.getBlockZ();
+            net.minecraft.client.util.Clipboard clipboard = new Clipboard();
+            clipboard.setClipboard(this.client.getWindow().getHandle(), coords);
+            SendMessageToPlayer.SendMessageToPlayer("§aKoordinaten Kopiert!", true);
+            MinecraftClient.getInstance().setScreen(null);
+        }));
+
     }
 
     @Override
