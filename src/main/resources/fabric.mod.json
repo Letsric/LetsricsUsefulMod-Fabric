@@ -9,7 +9,7 @@
   ],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/LetsricsUsefulMod/icon.png",
+  "icon": "",
   "environment": "*",
   "entrypoints": {
     "client": [
@@ -23,8 +23,8 @@
     "LetsricsUsefulMod.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.13.3",
+    "fabricloader": ">=0.14.9",
     "fabric": "*",
-    "minecraft": "1.18.2"
+    "minecraft": "1.19"
   }
 }

@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 
@@ -16,8 +16,11 @@ public class AutoText {
         Autotexts.add(KeyBinding);
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (KeyBinding.wasPressed() && Autotexts.contains(KeyBinding)) {
-                MinecraftClient.getInstance().player.sendChatMessage(command);
-                MinecraftClient.getInstance().player.sendMessage(new LiteralText("§aAutoText Ausgeführt!"), true);
+                if(command.startsWith("/"))
+                    MinecraftClient.getInstance().player.sendCommand(command.substring(1));
+                else
+                    MinecraftClient.getInstance().player.sendChatMessage(command);
+                MinecraftClient.getInstance().player.sendMessage(Text.literal("§aAutoText Ausgeführt!"), true);
             }
         });
     }

@@ -6,11 +6,11 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 public class AddQuicksendScreen extends Screen {
     public AddQuicksendScreen() {
-        super(new LiteralText("Quicksend hinzufügen"));
+        super(Text.literal("Quicksend hinzufügen"));
     }
 
     private static TextFieldWidget NameField;
@@ -20,13 +20,13 @@ public class AddQuicksendScreen extends Screen {
     protected void init() {
 
         // Textfeld initialisieren
-        NameField = new TextFieldWidget(textRenderer, this.width / 2 - 100, this.height / 2 - 38, 200, 20, new LiteralText(""));
-        MsgField = new TextFieldWidget(textRenderer, this.width / 2 - 100, this.height / 2 + 2, 200, 20, new LiteralText(""));
+        NameField = new TextFieldWidget(textRenderer, this.width / 2 - 100, this.height / 2 - 38, 200, 20, Text.literal(""));
+        MsgField = new TextFieldWidget(textRenderer, this.width / 2 - 100, this.height / 2 + 2, 200, 20, Text.literal(""));
 
         // Komponente hinzufügen
         addDrawableChild(NameField);
         addDrawableChild(MsgField);
-        addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 27, 200, 20, new LiteralText("Fertig"), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 100, this.height / 2 + 27, 200, 20, Text.literal("Fertig"), button -> {
             if(!MsgField.getText().isEmpty() && !NameField.getText().isEmpty()) {
                 LetsricsUsefulMod.quicksendArray.add(MsgField.getText());
                 LetsricsUsefulMod.quicksendNameArray.add(NameField.getText());

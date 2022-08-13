@@ -6,7 +6,9 @@
   "mixins": [
     "InGameHudMixin",
     "GameMenuScreenMixin",
-    "MinecraftClientAccessor"
+    "MinecraftClientAccessor",
+    "ChatHudMixin",
+    "SimpleOptionMixin"
   ],
   "client": [
   ],

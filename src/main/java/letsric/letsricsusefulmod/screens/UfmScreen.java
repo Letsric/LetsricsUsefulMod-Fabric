@@ -2,22 +2,18 @@ package letsric.letsricsusefulmod.screens;
 
 import letsric.letsricsusefulmod.LetsricsUsefulMod;
 import letsric.letsricsusefulmod.SendMessageToPlayer;
-import net.minecraft.client.Keyboard;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.Clipboard;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
-
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
+import net.minecraft.text.Text;
 
 public class UfmScreen extends Screen {
 
     public UfmScreen() {
-        super(new LiteralText("Letsrics Useful Mod"));
+        super(Text.literal("Letsrics Useful Mod"));
     }
 
     @Override
@@ -26,25 +22,23 @@ public class UfmScreen extends Screen {
         String FullbrightText = "§cFEHLER";
         if(LetsricsUsefulMod.fullbright) { FullbrightText = "§aAN"; }
         if(!LetsricsUsefulMod.fullbright) { FullbrightText = "§cAUS"; }
-        addDrawableChild(new ButtonWidget(this.width / 2 - 45, 65, 90, 20, new LiteralText("Fullbright: " + FullbrightText), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 45, 65, 90, 20, Text.literal("Fullbright: " + FullbrightText), button -> {
             if(LetsricsUsefulMod.fullbright) {
-                MinecraftClient.getInstance().options.gamma = 1;
-                MinecraftClient.getInstance().options.write();
+                MinecraftClient.getInstance().options.getGamma().setValue(0.5);
                 LetsricsUsefulMod.fullbright = false;
-                button.setMessage(new LiteralText("Fullbright: §cAUS"));
+                button.setMessage(Text.literal("Fullbright: §cAUS"));
             }
             else {
-                MinecraftClient.getInstance().options.gamma = 100;
-                MinecraftClient.getInstance().options.write();
+                MinecraftClient.getInstance().options.getGamma().setValue(10.0);
                 LetsricsUsefulMod.fullbright = true;
-                button.setMessage(new LiteralText("Fullbright: §aAN"));
+                button.setMessage(Text.literal("Fullbright: §aAN"));
             }
         }));
 
         String TablistInToggleModeString = "§cFEHLER";
         if(LetsricsUsefulMod.TablistInToggleMode) TablistInToggleModeString = "§aAN";
         if(!LetsricsUsefulMod.TablistInToggleMode) TablistInToggleModeString = "§cAUS";
-        addDrawableChild(new ButtonWidget(this.width / 2 - 45, 89, 90, 20, new LiteralText("ToggleTab: " + TablistInToggleModeString), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 45, 89, 90, 20, Text.literal("ToggleTab: " + TablistInToggleModeString), button -> {
             if (LetsricsUsefulMod.TablistInToggleMode) {
                 LetsricsUsefulMod.TablistInToggleMode = false;
                 LetsricsUsefulMod.WriteUFMOptionsFile();
@@ -55,35 +49,35 @@ public class UfmScreen extends Screen {
             MinecraftClient.getInstance().setScreen(this);
         }));
 
-        addDrawableChild(new ButtonWidget(this.width / 2 - 140, 65, 90, 20, new LiteralText("Autotext"), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 140, 65, 90, 20, Text.literal("Autotext"), button -> {
             MinecraftClient.getInstance().setScreen(new AutotextScreen());
         }));
 
-        addDrawableChild(new ButtonWidget(this.width / 2 - 140, 89, 90, 20, new LiteralText("ChatsoundFilter"), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 140, 89, 90, 20, Text.literal("ChatsoundFilter"), button -> {
             MinecraftClient.getInstance().setScreen(new ChatSoundFilterScreen());
         }));
 
-        addDrawableChild(new ButtonWidget(this.width / 2 + 50, 65, 90, 20, new LiteralText("Advanced"), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 + 50, 65, 90, 20, Text.literal("Advanced"), button -> {
             MinecraftClient.getInstance().setScreen(new AdvancedScreen(this));
         }));
 
         String ButtonText;
         if (LetsricsUsefulMod.showHud) ButtonText = "§aAN";
         else ButtonText = "§cAUS";
-        addDrawableChild(new ButtonWidget(this.width / 2 - 45, 113, 90, 20, new LiteralText("HUD: " + ButtonText), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 45, 113, 90, 20, Text.literal("HUD: " + ButtonText), button -> {
             LetsricsUsefulMod.showHud = !LetsricsUsefulMod.showHud;
             LetsricsUsefulMod.WriteUFMOptionsFile();
-            if (LetsricsUsefulMod.showHud) button.setMessage(new LiteralText("HUD: §aAN"));
-            else button.setMessage(new LiteralText("HUD: §cAUS"));
+            if (LetsricsUsefulMod.showHud) button.setMessage(Text.literal("HUD: §aAN"));
+            else button.setMessage(Text.literal("HUD: §cAUS"));
         }));
 
         // Quicksend
-        addDrawableChild(new ButtonWidget(this.width / 2 - 140, 113, 90, 20, new LiteralText("Quicksend"), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 - 140, 113, 90, 20, Text.literal("Quicksend"), button -> {
             MinecraftClient.getInstance().setScreen(new QuicksendScreen(new UfmScreen()));
         }));
 
         // Copy Coords
-        addDrawableChild(new ButtonWidget(this.width / 2 + 50, 89, 90, 20, new LiteralText("Koortinaten Kopieren"), button -> {
+        addDrawableChild(new ButtonWidget(this.width / 2 + 50, 89, 90, 20, Text.literal("Koortinaten Kopieren"), button -> {
             String coords = MinecraftClient.getInstance().player.getBlockX() + ", " + MinecraftClient.getInstance().player.getBlockY() + ", " + MinecraftClient.getInstance().player.getBlockZ();
             net.minecraft.client.util.Clipboard clipboard = new Clipboard();
             clipboard.setClipboard(this.client.getWindow().getHandle(), coords);

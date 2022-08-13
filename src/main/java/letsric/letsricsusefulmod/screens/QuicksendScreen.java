@@ -5,12 +5,12 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 public class QuicksendScreen extends Screen {
     Screen parent;
     public QuicksendScreen(Screen parent) {
-        super(new LiteralText("Quicksend"));
+        super(Text.literal("Quicksend"));
         this.parent = parent;
     }
 
@@ -35,9 +35,12 @@ public class QuicksendScreen extends Screen {
                 currentColum = 0;
                 currentRow++;
             }
-            addDrawableChild(new ButtonWidget(this.width / 10 + currentColum * 110, this.height / 10 + currentRow * 25 + 20, 100, 20, new LiteralText(i3), button -> {
+            addDrawableChild(new ButtonWidget(this.width / 10 + currentColum * 110, this.height / 10 + currentRow * 25 + 20, 100, 20, Text.literal(i3), button -> {
                 if(!deleteMode) {
-                    MinecraftClient.getInstance().player.sendChatMessage(i2);
+                    if(i2.startsWith("/"))
+                        MinecraftClient.getInstance().player.sendCommand(i2.substring(1));
+                    else
+                        MinecraftClient.getInstance().player.sendChatMessage(i2);
                 }
                 if(deleteMode) {
                     LetsricsUsefulMod.quicksendArray.remove(i4);
@@ -49,14 +52,14 @@ public class QuicksendScreen extends Screen {
             currentColum++;
         }
 
-        addDrawableChild(new ButtonWidget(this.width - 100, 40, 25, 20, new LiteralText("+"), button -> {
+        addDrawableChild(new ButtonWidget(this.width - 100, 40, 25, 20, Text.literal("+"), button -> {
             MinecraftClient.getInstance().setScreen(new AddQuicksendScreen());
         }));
 
-        addDrawableChild(new ButtonWidget(this.width - 150, 40, 50, 20, new LiteralText("Löschen"), button -> {
+        addDrawableChild(new ButtonWidget(this.width - 150, 40, 50, 20, Text.literal("Löschen"), button -> {
             deleteMode = !deleteMode;
-            if(deleteMode) button.setMessage(new LiteralText("§eOBJEKT AUSWÄHLEN"));
-            if(!deleteMode) button.setMessage(new LiteralText("Löschen"));
+            if(deleteMode) button.setMessage(Text.literal("§eOBJEKT AUSWÄHLEN"));
+            if(!deleteMode) button.setMessage(Text.literal("Löschen"));
         }));
 
     }
