@@ -40,7 +40,7 @@ public class QuicksendScreen extends Screen {
                     if(i2.startsWith("/"))
                         MinecraftClient.getInstance().player.sendCommand(i2.substring(1));
                     else
-                        MinecraftClient.getInstance().player.sendChatMessage(i2);
+                        MinecraftClient.getInstance().player.sendChatMessage(i2, Text.literal(i2));
                 }
                 if(deleteMode) {
                     LetsricsUsefulMod.quicksendArray.remove(i4);

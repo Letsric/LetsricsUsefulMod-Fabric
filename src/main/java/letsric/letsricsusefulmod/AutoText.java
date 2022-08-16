@@ -19,7 +19,7 @@ public class AutoText {
                 if(command.startsWith("/"))
                     MinecraftClient.getInstance().player.sendCommand(command.substring(1));
                 else
-                    MinecraftClient.getInstance().player.sendChatMessage(command);
+                    MinecraftClient.getInstance().player.sendChatMessage(command, Text.literal(command));
                 MinecraftClient.getInstance().player.sendMessage(Text.literal("§aAutoText Ausgeführt!"), true);
             }
         });
