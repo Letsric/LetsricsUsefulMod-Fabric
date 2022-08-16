@@ -7,7 +7,7 @@
     "InGameHudMixin",
     "GameMenuScreenMixin",
     "MinecraftClientAccessor",
-    "ChatHudMixin",
+    "MessageHandlerMixin",
     "SimpleOptionMixin"
   ],
   "client": [
