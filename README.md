@@ -1,3 +1,7 @@
+# Dieser Mod wird nicht mehr unterstützt!
+
+Labymod 4 ist draußen, und es ist eigentlich diese Mod in gut. Es gibt also keinen Zweck mehr für diese Mod. Wenn du ToggleTab willst, habe ich dafür ein LabyMod-Addon gemacht: https://flintmc.net/modification/71.toggletab4
+
 # Letsrics useful Mod (Fabric)
 
 Diese Mod fügt ein paar nützliche Funktionen zum Spiel hinzu.
